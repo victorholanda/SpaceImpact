@@ -36,7 +36,7 @@ public class Board extends JPanel implements ActionListener
 	boolean isInMenu = true;
 	boolean IsDeath=false;
 	boolean reloading = false;
-	boolean Linkclick=true;
+	boolean linkClick=true;
 	int T=10;
 	int move=0;
 	private Timer timer;
@@ -140,7 +140,6 @@ public class Board extends JPanel implements ActionListener
 				g2d.drawImage(loader.getHmlogo(),(int)menu.getRectLogo().getX(), (int)menu.getRectLogo().getY(), null);
 			else
 				g2d.drawImage(loader.getHmlogoPressed(),(int)menu.getRectLogo().getX(), (int)menu.getRectLogo().getY(), null);
-			g2d.fill(menu.getRectMouse());
 		}
 		
 		Toolkit.getDefaultToolkit().sync();
@@ -263,9 +262,10 @@ public class Board extends JPanel implements ActionListener
 		else{
 		if(!menu.getRectMouse().intersects(menu.getRectLogo())&&mouse.Click())	
 			isInMenu=false;
-		if(!menu.getRectMouse().intersects(menu.getRectLogo())&&mouse.Click()&&Linkclick)	
+		if(menu.getRectMouse().intersects(menu.getRectLogo())&&mouse.Click() && linkClick){	
 			openWebpage("http://homemadestudios.altervista.org/");
-			Linkclick=false;
+			linkClick=false;
+		}
 		menu.updateMouse(mouse.getMousePos().x,mouse.getMousePos().y);
 		}
 		repaint();
@@ -281,7 +281,7 @@ public class Board extends JPanel implements ActionListener
 		isInMenu = true;
 		IsDeath=false;
 		reloading = false;
-		Linkclick=true;
+		linkClick=true;
 		mouse.ClickSet(false);
 		bullets.clear();
 		enemies.clear();
